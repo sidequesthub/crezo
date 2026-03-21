@@ -1,18 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 
-export default function Hero() {
-  const [email, setEmail] = useState("");
+// Replace this with your Tally form URL after creating it
+const TALLY_FORM_URL = "https://tally.so/r/YOUR_FORM_ID";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    const existing = JSON.parse(localStorage.getItem("crezo_waitlist") || "[]");
-    existing.push({ email, date: new Date().toISOString() });
-    localStorage.setItem("crezo_waitlist", JSON.stringify(existing));
-    setEmail("");
+export default function Hero() {
+  useEffect(() => {
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
+  const openTallyForm = () => {
+    // @ts-ignore - Tally global object
+    if (window.Tally) {
+      // @ts-ignore
+      window.Tally.openPopup(TALLY_FORM_URL.replace('https://tally.so/r/', ''), {
+        width: 500,
+        emoji: {
+          text: '🚀',
+          animation: 'wave'
+        }
+      });
+    } else {
+      // Fallback: open in new tab
+      window.open(TALLY_FORM_URL, '_blank');
+    }
   };
 
   return (
@@ -54,27 +77,19 @@ export default function Hero() {
           leaving your creative flow. Designed for the modern Indian atelier.
         </motion.p>
 
-        <motion.form
-          onSubmit={handleSubmit}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-20"
+          className="flex justify-center mb-20"
         >
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="flex-grow bg-[#1c1b1b] border-none rounded-xl px-6 py-4 focus:ring-2 focus:ring-[#adc6ff] text-[#e5e2e1] placeholder:text-[#c1c6d7]/50 focus:outline-none"
-            placeholder="Enter your email"
-          />
           <button
-            type="submit"
+            onClick={openTallyForm}
             className="bg-gradient-to-br from-[#adc6ff] to-[#4b8eff] text-[#00285c] px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
           >
             Join Waitlist
           </button>
-        </motion.form>
+        </motion.div>
 
         {/* Dashboard Mockup */}
         <motion.div

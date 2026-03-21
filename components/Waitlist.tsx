@@ -3,29 +3,39 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
+// Replace this with your Tally form URL after creating it
+const TALLY_FORM_URL = "https://tally.so/r/YOUR_FORM_ID";
+
 export default function Waitlist() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [count, setCount] = useState(127);
 
   useEffect(() => {
-    // Simulate a slowly increasing count
-    const stored = localStorage.getItem("crezo_waitlist");
-    if (stored) {
-      const list = JSON.parse(stored);
-      setCount(127 + list.length);
-    }
+    // Load Tally embed script
+    const script = document.createElement('script');
+    script.src = 'https://tally.so/widgets/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    const existing = JSON.parse(localStorage.getItem("crezo_waitlist") || "[]");
-    existing.push({ email, date: new Date().toISOString() });
-    localStorage.setItem("crezo_waitlist", JSON.stringify(existing));
-    setSubmitted(true);
-    setCount((c) => c + 1);
-    setEmail("");
+  const openTallyForm = () => {
+    // @ts-ignore - Tally global object
+    if (window.Tally) {
+      // @ts-ignore
+      window.Tally.openPopup(TALLY_FORM_URL.replace('https://tally.so/r/', ''), {
+        width: 500,
+        emoji: {
+          text: '🚀',
+          animation: 'wave'
+        }
+      });
+    } else {
+      // Fallback: open in new tab
+      window.open(TALLY_FORM_URL, '_blank');
+    }
   };
 
   return (
@@ -50,37 +60,20 @@ export default function Waitlist() {
           </p>
         </motion.div>
 
-        <motion.form
-          onSubmit={handleSubmit}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+          className="flex justify-center"
         >
-          {!submitted ? (
-            <>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                required
-                className="flex-1 px-4 py-3.5 rounded-xl bg-[#1c1b1b] border border-[#414755]/20 text-[#e5e2e1] placeholder-[#8b90a0] focus:outline-none focus:border-[#adc6ff] transition-colors text-sm"
-              />
-              <button
-                type="submit"
-                className="px-8 py-3.5 rounded-xl primary-gradient hover:opacity-90 font-semibold text-sm transition-all hover:shadow-[0_0_30px_rgba(173,198,255,0.3)] cursor-pointer whitespace-nowrap text-[#002e69]"
-              >
-                Join Waitlist
-              </button>
-            </>
-          ) : (
-            <div className="w-full text-center py-3.5 px-4 rounded-xl bg-[#1c1b1b] border border-[#22c55e]/30 text-[#22c55e] text-sm font-medium">
-              Welcome aboard! We&apos;ll let you know when Crezo is ready.
-            </div>
-          )}
-        </motion.form>
+          <button
+            onClick={openTallyForm}
+            className="px-8 py-3.5 rounded-xl primary-gradient hover:opacity-90 font-semibold text-sm transition-all hover:shadow-[0_0_30px_rgba(173,198,255,0.3)] cursor-pointer whitespace-nowrap text-[#002e69]"
+          >
+            Join Waitlist
+          </button>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
