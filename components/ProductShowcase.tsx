@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function ProductShowcase() {
   return (
-    <section id="showcase" className="relative pt-12 pb-24 px-6 overflow-hidden">
+    <section id="showcase" className="relative pt-12 pb-24 px-4 sm:px-6 overflow-hidden">
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#adc6ff]/8 rounded-full blur-3xl" />
       <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-[#ffbc7c]/6 rounded-full blur-3xl" />
 
