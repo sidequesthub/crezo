@@ -68,7 +68,7 @@ const tiers = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 sm:py-32 relative">
+    <section id="pricing" className="pt-20 pb-24 sm:pt-24 sm:pb-32 relative">
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#adc6ff]/8 rounded-full blur-3xl" />
       
       <div className="max-w-6xl mx-auto px-6 relative z-10">
