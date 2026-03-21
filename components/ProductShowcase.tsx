@@ -173,18 +173,17 @@ export default function ProductShowcase() {
               Available on mobile & desktop
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-headline)] mb-4">
-              Your creator dashboard, everywhere
+              Plan your content calendar
             </h3>
             <p className="text-[#c1c6d7] mb-8 max-w-xl mx-auto">
-              Access your entire creator business from any device. Desktop for
-              deep work, mobile for on-the-go updates.
+              Schedule posts, track content across platforms, and never miss a deadline. Your entire content strategy in one place.
             </p>
             <div className="flex justify-center">
               <Image
-                src="/screenshots/mobile-dashboard.png"
-                alt="Mobile Dashboard"
+                src="/screenshots/content-calendar-mobile.png"
+                alt="Content Calendar"
                 width={780}
-                height={2502}
+                height={1928}
                 quality={95}
                 className="max-w-xs rounded-xl border border-[#414755]/20 shadow-xl"
               />
