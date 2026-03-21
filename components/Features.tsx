@@ -72,7 +72,7 @@ const itemVariants = {
 
 export default function Features() {
   return (
-    <section id="features" className="pt-16 pb-24 sm:pt-20 sm:pb-32 relative">
+    <section id="features" className="pt-12 pb-24 sm:pt-16 sm:pb-32 relative">
       <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-[#ffbc7c]/8 rounded-full blur-3xl" />
       
       <div className="max-w-6xl mx-auto px-6 relative z-10">
