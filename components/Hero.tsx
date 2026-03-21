@@ -41,7 +41,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden px-8 pt-44 pb-32" style={{
+    <section className="relative overflow-hidden px-4 sm:px-8 pt-32 sm:pt-44 pb-20 sm:pb-32" style={{
       background: 'radial-gradient(circle at 50% -20%, rgba(75, 142, 255, 0.15) 0%, rgba(19, 19, 19, 0) 60%)'
     }}>
       <div className="max-w-5xl mx-auto text-center">
@@ -49,10 +49,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2a2a2a] border border-[#414755]/20 mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2a2a2a] border border-[#414755]/20 mb-6 sm:mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-[#ffbc7c] animate-pulse"></span>
-          <span className="text-xs font-bold uppercase tracking-widest text-[#c1c6d7]">
+          <span className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#c1c6d7]">
             The Creator Operating System
           </span>
         </motion.div>
@@ -61,7 +61,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-6xl md:text-8xl font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-8 leading-[1.1]"
+          className="text-4xl sm:text-6xl md:text-8xl font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.1]"
         >
           Run your creator business{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#adc6ff] via-[#4b8eff] to-[#ffbc7c]">
@@ -73,7 +73,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[#c1c6d7] text-xl max-w-2xl mx-auto mb-12"
+          className="text-[#c1c6d7] text-base sm:text-xl max-w-2xl mx-auto mb-8 sm:mb-12 px-4"
         >
           Automate invoices, manage brand deals, and track every ₹ without
           leaving your creative flow. Designed for the modern Indian atelier.
@@ -83,22 +83,22 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex justify-center mb-20"
+          className="flex justify-center mb-12 sm:mb-20"
         >
           <button
             onClick={openTallyForm}
-            className="bg-gradient-to-br from-[#adc6ff] to-[#4b8eff] text-[#00285c] px-8 py-4 rounded-xl font-bold hover:opacity-90 transition-opacity"
+            className="bg-gradient-to-br from-[#adc6ff] to-[#4b8eff] text-[#00285c] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:opacity-90 transition-opacity text-sm sm:text-base"
           >
             Join Waitlist
           </button>
         </motion.div>
 
-        {/* Dashboard Mockup */}
+        {/* Dashboard Mockup - Hidden on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative group max-w-6xl mx-auto"
+          className="relative group max-w-6xl mx-auto hidden md:block"
         >
           <div className="absolute -inset-4 bg-[#adc6ff]/10 blur-3xl rounded-full opacity-30 group-hover:opacity-50 transition-opacity"></div>
           <div className="relative bg-[#201f1f] rounded-2xl p-4 shadow-2xl border border-[#414755]/10">
@@ -169,6 +169,23 @@ export default function Hero() {
                 </div>
               </div>
             </div>
+          </div>
+        </motion.div>
+
+        {/* Mobile Simple Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="md:hidden grid grid-cols-2 gap-3 max-w-sm mx-auto"
+        >
+          <div className="bg-[#201f1f] rounded-xl p-4 border border-[#414755]/10">
+            <div className="text-xs text-[#8b90a0] mb-1">Revenue</div>
+            <div className="text-lg font-bold text-[#e5e2e1]">₹14.2L</div>
+          </div>
+          <div className="bg-[#201f1f] rounded-xl p-4 border border-[#414755]/10">
+            <div className="text-xs text-[#8b90a0] mb-1">Active Deals</div>
+            <div className="text-lg font-bold text-[#e5e2e1]">12</div>
           </div>
         </motion.div>
       </div>
