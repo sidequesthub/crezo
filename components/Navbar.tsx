@@ -5,12 +5,45 @@ import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("showcase");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const sections = ["showcase", "features", "pricing", "waitlist"];
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-20% 0px -60% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const navItems = [
+    { id: "showcase", label: "Showcase" },
+    { id: "features", label: "Atelier" },
+    { id: "pricing", label: "Pricing" },
+    { id: "waitlist", label: "Waitlist" },
+  ];
 
   return (
     <motion.nav
@@ -25,30 +58,19 @@ export default function Navbar() {
         </div>
         
         <div className="hidden md:flex items-center gap-8 text-sm tracking-tight">
-          <a
-            href="#showcase"
-            className="text-blue-400 font-semibold border-b-2 border-blue-400 pb-1"
-          >
-            Showcase
-          </a>
-          <a
-            href="#features"
-            className="text-zinc-400 hover:text-zinc-100 transition-colors"
-          >
-            Atelier
-          </a>
-          <a
-            href="#pricing"
-            className="text-zinc-400 hover:text-zinc-100 transition-colors"
-          >
-            Pricing
-          </a>
-          <a
-            href="#waitlist"
-            className="text-zinc-400 hover:text-zinc-100 transition-colors"
-          >
-            Waitlist
-          </a>
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={`transition-colors pb-1 ${
+                activeSection === item.id
+                  ? "text-blue-400 font-semibold border-b-2 border-blue-400"
+                  : "text-zinc-400 hover:text-zinc-100"
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
       </div>
     </motion.nav>
