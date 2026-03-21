@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const TALLY_FORM_URL = "https://tally.so/r/q4PyD5";
 
@@ -93,7 +94,7 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* Dashboard Mockup - Hidden on mobile */}
+        {/* Dashboard Mockup - Desktop */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -172,20 +173,25 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Mobile Simple Stats */}
+        {/* Mobile Dashboard Screenshot */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="md:hidden grid grid-cols-2 gap-3 max-w-sm mx-auto"
+          className="md:hidden flex justify-center"
         >
-          <div className="bg-[#201f1f] rounded-xl p-4 border border-[#414755]/10">
-            <div className="text-xs text-[#8b90a0] mb-1">Revenue</div>
-            <div className="text-lg font-bold text-[#e5e2e1]">₹14.2L</div>
-          </div>
-          <div className="bg-[#201f1f] rounded-xl p-4 border border-[#414755]/10">
-            <div className="text-xs text-[#8b90a0] mb-1">Active Deals</div>
-            <div className="text-lg font-bold text-[#e5e2e1]">12</div>
+          <div className="relative max-w-[280px] mx-auto">
+            <div className="absolute -inset-4 bg-[#adc6ff]/10 blur-3xl rounded-full opacity-30"></div>
+            <div className="relative">
+              <Image
+                src="/screenshots/mobile-dashboard.png"
+                alt="Crezo Mobile Dashboard"
+                width={780}
+                height={2502}
+                quality={95}
+                className="rounded-2xl border border-[#414755]/20 shadow-2xl"
+              />
+            </div>
           </div>
         </motion.div>
       </div>
