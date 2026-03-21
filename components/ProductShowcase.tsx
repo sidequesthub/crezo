@@ -20,12 +20,12 @@ export default function ProductShowcase() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight font-[family-name:var(--font-headline)] mb-4">
             Your{" "}
             <span className="bg-gradient-to-r from-[#adc6ff] to-[#4b8eff] bg-clip-text text-transparent">
-              Digital Atelier
+              Creator Workspace
             </span>
           </h2>
           <p className="text-base sm:text-lg text-[#c1c6d7] max-w-2xl mx-auto">
             Manage brand deals, track revenue, and organize your content — all
-            in a premium workspace designed for Indian creators.
+            in a powerful workspace designed for Indian creators.
           </p>
         </motion.div>
 

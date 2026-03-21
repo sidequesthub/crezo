@@ -77,7 +77,7 @@ export default function Hero() {
           className="text-[#c1c6d7] text-base sm:text-xl max-w-2xl mx-auto mb-8 sm:mb-12 px-4"
         >
           Automate invoices, manage brand deals, and track every ₹ without
-          leaving your creative flow. Designed for the modern Indian atelier.
+          leaving your creative flow. Designed for modern Indian creators.
         </motion.p>
 
         <motion.div
