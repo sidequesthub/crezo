@@ -165,12 +165,12 @@ export default function ProductShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-24 text-center"
+          className="mt-24 text-center px-4"
         >
           <div className="glass-card max-w-3xl mx-auto p-8 sm:p-12 rounded-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0e0e0e] border border-[#414755]/30 text-xs text-[#c1c6d7] mb-4">
               <span className="w-1.5 h-1.5 rounded-full bg-[#adc6ff] animate-pulse" />
-              Available on mobile & desktop
+              Available on web and mobile
             </div>
             <h3 className="text-2xl sm:text-3xl font-bold font-[family-name:var(--font-headline)] mb-4">
               Plan your content calendar
@@ -178,15 +178,17 @@ export default function ProductShowcase() {
             <p className="text-[#c1c6d7] mb-8 max-w-xl mx-auto">
               Schedule posts, track content across platforms, and never miss a deadline. Your entire content strategy in one place.
             </p>
-            <div className="flex justify-center">
-              <Image
-                src="/screenshots/content-calendar-mobile.png"
-                alt="Content Calendar"
-                width={780}
-                height={1928}
-                quality={95}
-                className="max-w-xs rounded-xl border border-[#414755]/20 shadow-xl"
-              />
+            <div className="flex justify-center px-4">
+              <div className="max-w-[240px]">
+                <Image
+                  src="/screenshots/content-calendar-mobile.png"
+                  alt="Content Calendar"
+                  width={780}
+                  height={1928}
+                  quality={95}
+                  className="rounded-xl border border-[#414755]/20 shadow-xl"
+                />
+              </div>
             </div>
           </div>
         </motion.div>
