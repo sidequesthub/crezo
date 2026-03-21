@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 // Replace this with your Tally form URL after creating it
-const TALLY_FORM_URL = "https://tally.so/r/YOUR_FORM_ID";
+const TALLY_FORM_URL = "https://tally.so/r/q4PyD5";
 
 export default function Waitlist() {
   const [count, setCount] = useState(127);
