@@ -52,7 +52,7 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className="fixed top-0 w-full z-50 bg-zinc-900/60 backdrop-blur-xl shadow-2xl shadow-blue-500/5"
     >
-      <div className="flex justify-between items-center max-w-7xl mx-auto px-8 py-4">
+      <div className="flex justify-between items-center max-w-7xl mx-auto px-4 sm:px-8 py-4">
         <div className="text-2xl font-bold tracking-tighter text-zinc-100 font-[family-name:var(--font-headline)]">
           Crezo
         </div>
