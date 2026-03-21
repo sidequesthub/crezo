@@ -3,29 +3,32 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-// Replace this with your Tally form URL after creating it
 const TALLY_FORM_URL = "https://tally.so/r/q4PyD5";
 
 export default function Waitlist() {
   const [count, setCount] = useState(127);
+  const [tallyLoaded, setTallyLoaded] = useState(false);
 
   useEffect(() => {
     // Load Tally embed script
     const script = document.createElement('script');
     script.src = 'https://tally.so/widgets/embed.js';
     script.async = true;
+    script.onload = () => setTallyLoaded(true);
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
   const openTallyForm = () => {
     // @ts-ignore - Tally global object
-    if (window.Tally) {
+    if (typeof window !== 'undefined' && window.Tally) {
       // @ts-ignore
-      window.Tally.openPopup(TALLY_FORM_URL.replace('https://tally.so/r/', ''), {
+      window.Tally.openPopup('q4PyD5', {
         width: 500,
         emoji: {
           text: '🚀',
