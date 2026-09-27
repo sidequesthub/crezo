@@ -43,3 +43,6 @@ next-env.d.ts
 *.njsproj
 *.sln
 *.sw?
+
+# Local MCP config (contains an API key)
+.mcp.json
