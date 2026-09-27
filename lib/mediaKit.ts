@@ -13,6 +13,7 @@ export interface Platform {
 
 export interface MediaKitData {
   displayName: string;
+  photoUrl?: string;
   tagline: string;
   bio: string;
   niche: string;
