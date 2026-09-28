@@ -125,10 +125,10 @@ export default function PrivacyPage() {
             <p className="mt-4">
               You can also email{" "}
               <a
-                href="mailto:privacy@crezo.studio"
+                href="mailto:hello@crezo.studio"
                 className="text-primary hover:text-primary-fixed"
               >
-                privacy@crezo.studio
+                hello@crezo.studio
               </a>{" "}
               and we will delete your account within 30 days.
             </p>
@@ -161,10 +161,10 @@ export default function PrivacyPage() {
             <p>
               Questions about privacy:{" "}
               <a
-                href="mailto:privacy@crezo.studio"
+                href="mailto:hello@crezo.studio"
                 className="text-primary hover:text-primary-fixed"
               >
-                privacy@crezo.studio
+                hello@crezo.studio
               </a>
               <br />
               Anything else:{" "}
