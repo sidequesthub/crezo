@@ -170,8 +170,15 @@ function MediaKitGraphic() {
       <div className="mx-6 rounded-t-3xl border border-b-0 border-[#414755]/30 bg-[#131313] p-5 sm:mx-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ffbc7c] to-[#e1477e] text-lg font-extrabold text-[#131313]">
-              A
+            {/* The source is a circle on white; scale-110 crops the white rim. */}
+            <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full">
+              <Image
+                src="/images/ananya.jpg"
+                alt="Ananya Rao"
+                width={96}
+                height={96}
+                className="h-full w-full scale-110 object-cover"
+              />
             </div>
             <div>
               <div className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#8b90a0]">

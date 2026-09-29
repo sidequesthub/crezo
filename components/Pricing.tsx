@@ -14,7 +14,8 @@ const tiers = [
     featured: false,
     dimmed: false,
     features: [
-      "Up to 5 active brand deals",
+      "Up to 3 active brand deals",
+      "3 GST invoices a month",
       "Content calendar",
       "Media vault (3 folders)",
       "Media kit page (crezo.studio/yourname)",
