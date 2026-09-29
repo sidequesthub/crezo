@@ -42,7 +42,7 @@ export default function Waitlist() {
   };
 
   return (
-    <section id="waitlist" className="py-16 sm:py-32 relative">
+    <section id="waitlist" className="py-16 sm:py-32 px-4 sm:px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#adc6ff]/10 to-transparent" />
 
       <div className="relative max-w-2xl mx-auto px-8 sm:px-12 py-12 sm:py-16 text-center bg-[#1c1b1b]/60 backdrop-blur-sm rounded-3xl border border-[#414755]/30 shadow-2xl">
