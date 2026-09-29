@@ -11,7 +11,7 @@ import { PLATFORMS } from "@/lib/platforms";
  * to say the same thing. Copy describes shipped behaviour only.
  */
 
-const INDIA = ["₹ INR-native", "GST & TDS ready", "UPI on invoices", "Share on WhatsApp"];
+const INDIA = ["₹ INR-native", "GST & TDS ready", "Share on WhatsApp"];
 
 export default function Showcase() {
   return (
