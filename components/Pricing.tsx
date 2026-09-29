@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import { motion } from "framer-motion";
 
 const tiers = [
@@ -67,6 +69,9 @@ const tiers = [
 ];
 
 export default function Pricing() {
+  // Phones show one plan at a time behind a switch; desktop shows all three.
+  const [selected, setSelected] = useState("Pro");
+
   return (
     <section id="pricing" className="pt-8 pb-16 sm:pt-16 sm:pb-32 relative">
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#adc6ff]/8 rounded-full blur-3xl" />
@@ -88,16 +93,36 @@ export default function Pricing() {
           </p>
         </motion.div>
 
-        {/* Phones swipe between tiers instead of scrolling past three stacked cards. */}
-        <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 pt-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:items-start md:gap-6 md:overflow-visible md:px-0 md:pt-0">
-          {tiers.map((tier, i) => (
-            <motion.div
+        <div className="mx-auto mb-6 flex w-fit rounded-full bg-[#1c1b1b] p-1 md:hidden" role="tablist">
+          {tiers.map((t) => (
+            <button
+              key={t.name}
+              role="tab"
+              aria-selected={selected === t.name}
+              onClick={() => setSelected(t.name)}
+              className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                selected === t.name ? "bg-[#353534] text-[#e5e2e1]" : "text-[#8b90a0]"
+              }`}
+            >
+              {t.name}
+            </button>
+          ))}
+        </div>
+
+        {/* One fade for the block: per-card fades stall when a hidden plan is switched in. */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="md:grid md:grid-cols-3 md:items-start md:gap-6"
+        >
+          {tiers.map((tier) => (
+            <div
               key={tier.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative w-[85%] shrink-0 snap-center rounded-2xl p-6 sm:p-8 border transition-all md:w-auto ${
+              className={`relative rounded-2xl p-6 sm:p-8 border transition-all ${
+                tier.name === selected ? "block" : "hidden"
+              } md:block ${
                 tier.featured
                   ? "bg-[#1c1b1b] border-[#adc6ff]/40 glow-blue md:scale-[1.02]"
                   : "bg-[#1c1b1b] border-[#353534]"
@@ -159,9 +184,9 @@ export default function Pricing() {
                   {tier.note}
                 </p>
               )}
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}

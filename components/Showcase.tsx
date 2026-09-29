@@ -28,7 +28,7 @@ export default function Showcase() {
             The business behind your content
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[#c1c6d7] sm:text-lg">
-            Deals, content, invoices and your media kit — built for Indian creators.
+            From the first pitch to the final payment.
           </p>
         </motion.div>
 
