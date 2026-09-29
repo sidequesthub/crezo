@@ -24,7 +24,7 @@ export default function Showcase() {
           transition={{ duration: 0.6 }}
           className="mb-8 text-center sm:mb-12"
         >
-          <h2 className="font-[family-name:var(--font-headline)] text-3xl font-extrabold tracking-tight sm:text-5xl">
+          <h2 className="font-[family-name:var(--font-headline)] text-[min(1.875rem,7vw)] font-extrabold tracking-tight sm:text-4xl">
             Everything behind your content
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[#c1c6d7] sm:text-lg">

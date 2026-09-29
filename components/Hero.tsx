@@ -47,7 +47,7 @@ export default function Hero() {
     }}>
       {/* Wide screens (lg+): pitch left, the real app right, both in the first screen.
           Phones: pitch only — the feature cards below carry the screenshots. */}
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.6fr_1fr]">
         <div className="text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -65,7 +65,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[34px] sm:text-5xl lg:text-[46px] xl:text-[56px] text-balance font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
+            className="text-[min(2.25rem,9.2vw)] sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl text-balance font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
           >
             {/* Two fixed lines from sm up: a free wrap stranded "pro" on its own line. */}
             <span className="sm:block">Run your creator</span>{" "}

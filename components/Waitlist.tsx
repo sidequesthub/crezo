@@ -52,7 +52,7 @@ export default function Waitlist() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-4 font-[family-name:var(--font-headline)]">
+          <h2 className="text-[min(1.875rem,7vw)] sm:text-4xl font-extrabold mb-4 font-[family-name:var(--font-headline)]">
             Be the first to try{" "}
             <span className="bg-gradient-to-r from-[#adc6ff] to-[#ffbc7c] bg-clip-text text-transparent">
               Crezo

@@ -84,7 +84,7 @@ export default function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center mb-8 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-[family-name:var(--font-headline)]">
+          <h2 className="text-[min(1.875rem,7vw)] sm:text-4xl font-extrabold font-[family-name:var(--font-headline)]">
             Simple pricing.{" "}
             <span className="text-[#c1c6d7]">No surprises.</span>
           </h2>
