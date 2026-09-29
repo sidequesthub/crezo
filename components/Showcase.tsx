@@ -25,7 +25,7 @@ export default function Showcase() {
           className="mb-8 text-center sm:mb-12"
         >
           <h2 className="font-[family-name:var(--font-headline)] text-3xl font-extrabold tracking-tight sm:text-5xl">
-            One app for the business side
+            The business behind your content
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[#c1c6d7] sm:text-lg">
             Deals, content, invoices and your media kit — built for Indian creators.
@@ -233,28 +233,40 @@ function MediaKitGraphic() {
   );
 }
 
-/** Folders as the app shows them: a 2x2 peek of the clips inside, plus a count. */
+/**
+ * Folders as the app shows them: a 2x2 peek of the clips inside, plus a count.
+ * Product shots are AI images from the Stitch designs; brand names are
+ * fictional so the mock never implies a real partnership.
+ */
 function VaultGraphic() {
   const folders = [
-    { brand: "boAt", campaign: "Airdopes launch", count: 12, tones: ["#8a6a4c", "#5b4a3b", "#a9855f", "#3a312a"] },
-    { brand: "Mamaearth", campaign: "Face wash reel", count: 8, tones: ["#6f7d5e", "#4e5a42", "#8e9a78", "#39402f"] },
-    { brand: "Titan", campaign: "Festive edit", count: 24, tones: ["#8c5f58", "#6b4540", "#b07a6c", "#43302c"] },
+    { brand: "Sonic", campaign: "Earbuds launch", count: 12, shots: ["audio-1", "audio-2", "audio-3"] },
+    { brand: "Glow", campaign: "Skincare reel", count: 8, shots: ["skin-1", "skin-2", "skin-3"] },
+    { brand: "Horizon", campaign: "Watch campaign", count: 24, shots: ["watch-1", "watch-2"] },
   ];
   return (
     <>
       <div className="grid grid-cols-3 gap-3 px-6 sm:px-8">
         {folders.map((f) => (
-          <div key={f.brand}>
-            <div className="grid aspect-square grid-cols-2 gap-0.5 overflow-hidden rounded-2xl">
-              {f.tones.map((t, i) => (
-                <div key={i} className="relative" style={{ background: t }}>
-                  {i === 3 && (
-                    <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-[#adc6ff]">
-                      +{f.count - 3}
-                    </span>
-                  )}
-                </div>
+          <div key={f.brand} className="min-w-0">
+            <div className="grid aspect-square grid-cols-2 gap-0.5 overflow-hidden rounded-2xl bg-[#2a2a2a]">
+              {f.shots.map((shot) => (
+                <Image
+                  key={shot}
+                  src={`/images/vault/${shot}.jpg`}
+                  alt=""
+                  width={180}
+                  height={180}
+                  className="h-full w-full object-cover"
+                />
               ))}
+              <span
+                className={`flex items-center justify-center bg-[#2a2a2a] text-sm font-bold text-[#e5e2e1] ${
+                  f.shots.length === 2 ? "col-span-2" : ""
+                }`}
+              >
+                +{f.count - f.shots.length}
+              </span>
             </div>
             <div className="mt-2 truncate text-sm font-semibold text-[#e5e2e1]">{f.brand}</div>
             <div className="truncate text-[11px] text-[#8b90a0]">{f.campaign}</div>
