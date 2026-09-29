@@ -25,7 +25,7 @@ export default function Showcase() {
           className="mb-8 text-center sm:mb-12"
         >
           <h2 className="font-[family-name:var(--font-headline)] text-3xl font-extrabold tracking-tight sm:text-5xl">
-            The business behind your content
+            Everything behind your content
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-[#c1c6d7] sm:text-lg">
             From the first pitch to the final payment.
@@ -36,10 +36,10 @@ export default function Showcase() {
           <Card
             label="Brand deals"
             accent="#adc6ff"
-            title="Every deal, pitch to paid"
+            title="Every brand deal, handled."
             desc="Track deliverables, deadlines and value in ₹. Turn a finished deal into a GST invoice in one tap."
           >
-            <Shot src="/screenshots/app-deals.png" alt="Crezo deals screen" w={1170} h={2382} phone offset={24} />
+            <Shot src="/screenshots/deals-v2.png" alt="Crezo deals screen" w={1170} h={2382} phone offset={24} />
           </Card>
 
           <Card
@@ -48,7 +48,7 @@ export default function Showcase() {
             title="Plan every post"
             desc="Schedule reels, videos and stories, tag them to a deal, and get reminded before they're due."
           >
-            <Shot src="/screenshots/app-calendar.png" alt="Crezo content calendar" w={1170} h={2382} phone />
+            <Shot src="/screenshots/calendar-v2.png" alt="Crezo content calendar" w={1170} h={2382} phone />
           </Card>
 
           <Card

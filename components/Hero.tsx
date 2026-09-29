@@ -45,10 +45,10 @@ export default function Hero() {
     <section className="relative overflow-hidden px-4 sm:px-8 pt-28 pb-6 sm:pt-36 md:pb-20" style={{
       background: 'radial-gradient(circle at 50% -20%, rgba(75, 142, 255, 0.15) 0%, rgba(19, 19, 19, 0) 60%)'
     }}>
-      {/* Desktop: pitch left, the real app right, both in the first screen.
+      {/* Wide screens (lg+): pitch left, the real app right, both in the first screen.
           Phones: pitch only — the feature cards below carry the screenshots. */}
-      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.15fr_1fr]">
-        <div className="text-center md:text-left">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+        <div className="text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -65,13 +65,15 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[32px] sm:text-6xl lg:text-7xl font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
+            className="text-[34px] sm:text-5xl lg:text-[46px] xl:text-[56px] text-balance font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
           >
-            {/* Fixed break: a free wrap stranded the last word on its own line. */}
-            Every brand deal,
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#adc6ff] via-[#4b8eff] to-[#ffbc7c]">
-              handled.
+            {/* Two fixed lines from sm up: a free wrap stranded "pro" on its own line. */}
+            <span className="sm:block">Run your creator</span>{" "}
+            <span className="sm:whitespace-nowrap">
+              business{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#adc6ff] via-[#4b8eff] to-[#ffbc7c]">
+                like a pro
+              </span>
             </span>
           </motion.h1>
 
@@ -79,7 +81,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[#c1c6d7] text-base sm:text-xl max-w-xl mx-auto md:mx-0 mb-8 sm:mb-10 px-4 md:px-0"
+            className="text-[#c1c6d7] text-base sm:text-xl max-w-xl mx-auto lg:mx-0 mb-8 sm:mb-10 px-4 lg:px-0"
           >
             Plan content, track payments, send GST invoices and share your media
             kit — one app built for Indian creators.
@@ -89,7 +91,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-center md:justify-start"
+            className="flex justify-center lg:justify-start"
           >
             <button
               onClick={openTallyForm}
@@ -104,12 +106,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative hidden justify-center md:flex"
+          className="relative hidden justify-center lg:flex"
         >
           <div className="absolute inset-10 rounded-full bg-[#4b8eff]/20 blur-3xl" />
           <div className="relative h-[450px] w-[300px] overflow-hidden rounded-t-[36px] border border-b-0 border-[#414755]/40 bg-[#131313] pt-6 shadow-2xl">
             <Image
-              src="/screenshots/app-deals.png"
+              src="/screenshots/deals-v2.png"
               alt="Crezo on iPhone — My Deals"
               width={1170}
               height={2382}
