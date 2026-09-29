@@ -94,94 +94,15 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* Dashboard Mockup - Desktop */}
+        {/* The real app, on every screen size. */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative group max-w-6xl mx-auto hidden md:block"
-        >
-          <div className="absolute -inset-4 bg-[#adc6ff]/10 blur-3xl rounded-full opacity-30 group-hover:opacity-50 transition-opacity"></div>
-          <div className="relative bg-[#201f1f] rounded-2xl p-4 shadow-2xl border border-[#414755]/10">
-            <div className="flex items-center gap-2 mb-4 px-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/50"></div>
-            </div>
-            <div className="grid grid-cols-12 gap-4 min-h-[400px] p-4">
-              {/* Sidebar */}
-              <div className="col-span-3 space-y-4">
-                <div className="h-10 w-full bg-[#2a2a2a] rounded-lg flex items-center px-3">
-                  <span className="text-xs font-semibold text-[#e5e2e1]">Dashboard</span>
-                </div>
-                <div className="bg-[#2a2a2a] rounded-lg p-4 space-y-3">
-                  <div className="text-xs text-[#8b90a0] font-medium">Upcoming Call</div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#adc6ff] to-[#4b8eff] flex items-center justify-center text-[10px] font-bold text-[#002e69]">BT</div>
-                    <div>
-                      <div className="text-xs font-semibold text-[#e5e2e1]">Boat Branding</div>
-                      <div className="text-[10px] text-[#8b90a0]">Tomorrow, 3 PM</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Main */}
-              <div className="col-span-9 space-y-4">
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="bg-[#2a2a2a] rounded-xl p-4">
-                    <div className="text-xs text-[#8b90a0] mb-2">Total Revenue</div>
-                    <div className="text-xl font-bold text-[#e5e2e1]">₹14,20,000</div>
-                    <div className="text-[10px] text-[#22c55e] mt-1">+18% this month</div>
-                  </div>
-                  <div className="bg-[#2a2a2a] rounded-xl p-4">
-                    <div className="text-xs text-[#8b90a0] mb-2">Active Deals</div>
-                    <div className="text-xl font-bold text-[#e5e2e1]">12</div>
-                    <div className="text-[10px] text-[#adc6ff] mt-1">3 closing soon</div>
-                  </div>
-                  <div className="bg-[#2a2a2a] rounded-xl p-4">
-                    <div className="text-xs text-[#8b90a0] mb-2">Pending GST</div>
-                    <div className="text-xl font-bold text-[#e5e2e1]">₹1,84,000</div>
-                    <div className="text-[10px] text-[#ffbc7c] mt-1">Due in 5 days</div>
-                  </div>
-                </div>
-                <div className="bg-[#2a2a2a] rounded-xl p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="text-sm font-semibold text-[#e5e2e1]">Recent Campaigns</div>
-                    <div className="text-xs text-[#adc6ff] cursor-pointer">View all</div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-3 bg-[#1c1b1b] rounded-lg">
-                      <div className="w-10 h-10 rounded bg-gradient-to-br from-[#adc6ff] to-[#4b8eff] flex items-center justify-center text-xs font-bold text-[#002e69]">BT</div>
-                      <div className="flex-1">
-                        <div className="text-xs font-semibold text-[#e5e2e1]">Boat Nirvana Launch</div>
-                        <div className="text-[10px] text-[#8b90a0]">YouTube Integrated</div>
-                      </div>
-                      <div className="px-2 py-1 bg-[#22c55e]/20 text-[#22c55e] text-[10px] font-semibold rounded">Paid</div>
-                    </div>
-                    <div className="flex items-center gap-3 p-3 bg-[#1c1b1b] rounded-lg">
-                      <div className="w-10 h-10 rounded bg-gradient-to-br from-[#ffbc7c] to-[#ff9f4a] flex items-center justify-center text-xs font-bold text-[#4a2800]">ME</div>
-                      <div className="flex-1">
-                        <div className="text-xs font-semibold text-[#e5e2e1]">Mamaearth Face Wash</div>
-                        <div className="text-[10px] text-[#8b90a0]">Instagram Reel</div>
-                      </div>
-                      <div className="px-2 py-1 bg-[#ffbc7c]/20 text-[#ffbc7c] text-[10px] font-semibold rounded">Pending</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Mobile Dashboard Screenshot */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="md:hidden flex justify-center"
+          className="flex justify-center"
         >
           {/* A window onto the phone, not the whole screen: the pitch is above. */}
-          <div className="relative mx-auto h-[380px] w-[240px] overflow-hidden">
+          <div className="relative mx-auto h-[380px] w-[240px] overflow-hidden sm:h-[520px] sm:w-[320px]">
             <div className="absolute -inset-4 bg-[#adc6ff]/10 blur-3xl rounded-full opacity-30"></div>
             <Image
               src="/screenshots/app-deals.png"
