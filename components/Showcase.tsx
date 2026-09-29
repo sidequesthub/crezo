@@ -273,10 +273,6 @@ function VaultGraphic() {
           </div>
         ))}
       </div>
-      <div className="mx-6 mt-4 flex items-center gap-2 rounded-2xl bg-[#131313] px-4 py-3 text-xs text-[#c1c6d7] sm:mx-8">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#ffbc7c]" />
-        Stays in your Photos app — nothing is uploaded
-      </div>
       <Fade />
     </>
   );
