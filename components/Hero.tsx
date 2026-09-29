@@ -65,11 +65,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-6xl lg:text-7xl font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
+            className="text-[32px] sm:text-6xl lg:text-7xl font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
           >
-            Run your creator business{" "}
+            {/* Fixed break: a free wrap stranded the last word on its own line. */}
+            Every brand deal,
+            <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#adc6ff] via-[#4b8eff] to-[#ffbc7c]">
-              like a pro
+              handled.
             </span>
           </motion.h1>
 
@@ -79,8 +81,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-[#c1c6d7] text-base sm:text-xl max-w-xl mx-auto md:mx-0 mb-8 sm:mb-10 px-4 md:px-0"
           >
-            Brand deals, content plans, GST invoices and your media kit — in one
-            app built for Indian creators.
+            Plan content, track payments, send GST invoices and share your media
+            kit — one app built for Indian creators.
           </motion.p>
 
           <motion.div
