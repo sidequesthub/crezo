@@ -1,46 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-
-const TALLY_FORM_URL = "https://tally.so/r/q4PyD5";
+import JoinWaitlistButton from "./JoinWaitlistButton";
 
 export default function Hero() {
-  const [tallyLoaded, setTallyLoaded] = useState(false);
-
-  useEffect(() => {
-    // Load Tally embed script
-    const script = document.createElement('script');
-    script.src = 'https://tally.so/widgets/embed.js';
-    script.async = true;
-    script.onload = () => setTallyLoaded(true);
-    document.body.appendChild(script);
-
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
-
-  const openTallyForm = () => {
-    // @ts-ignore - Tally global object
-    if (typeof window !== 'undefined' && window.Tally) {
-      // @ts-ignore
-      window.Tally.openPopup('q4PyD5', {
-        width: 500,
-        emoji: {
-          text: '🚀',
-          animation: 'wave'
-        }
-      });
-    } else {
-      // Fallback: open in new tab
-      window.open(TALLY_FORM_URL, '_blank');
-    }
-  };
-
   return (
     <section className="relative flex min-h-[100svh] items-center overflow-hidden px-4 sm:px-8 pt-24 pb-12" style={{
       background: 'radial-gradient(circle at 50% -20%, rgba(75, 142, 255, 0.15) 0%, rgba(19, 19, 19, 0) 60%)'
@@ -94,12 +58,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex justify-center lg:justify-start"
           >
-            <button
-              onClick={openTallyForm}
-              className="primary-gradient text-[#16140f] shadow-[0_8px_24px_rgba(0,0,0,0.45)] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:opacity-90 transition-opacity text-sm sm:text-base"
-            >
-              Join Waitlist
-            </button>
+            <JoinWaitlistButton className="primary-gradient text-[#16140f] shadow-[0_8px_24px_rgba(0,0,0,0.45)] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:opacity-90 transition-opacity text-sm sm:text-base" />
           </motion.div>
         </div>
 

@@ -39,7 +39,7 @@ export default function Showcase() {
             title="Every brand deal, handled."
             desc="Track deliverables, deadlines and value in ₹. Turn a finished deal into a GST invoice in one tap."
           >
-            <Shot src="/screenshots/deals-v2.png" alt="Crezo deals screen" w={1170} h={2382} phone offset={24} />
+            <Shot src="/screenshots/deals-v2.png" alt="Crezo deals screen" w={1170} h={2382} offset={24} />
           </Card>
 
           <Card
@@ -48,7 +48,7 @@ export default function Showcase() {
             title="Plan every post"
             desc="Schedule reels, videos and stories, tag them to a deal, and get reminded before they're due."
           >
-            <Shot src="/screenshots/calendar-v2.png" alt="Crezo content calendar" w={1170} h={2382} phone />
+            <Shot src="/screenshots/calendar-v2.png" alt="Crezo content calendar" w={1170} h={2382} />
           </Card>
 
           <Card
@@ -126,20 +126,18 @@ function Shot({
   alt,
   w,
   h,
-  phone,
   offset = 0,
 }: {
   src: string;
   alt: string;
   w: number;
   h: number;
-  phone?: boolean;
   /** Percent of the image's height to scroll past, to frame the useful part. */
   offset?: number;
 }) {
   return (
     <>
-      <div className={phone ? "flex justify-center px-6" : "pl-6 sm:pl-8"}>
+      <div className="flex justify-center px-6">
         <Image
           src={src}
           alt={alt}
@@ -147,11 +145,7 @@ function Shot({
           height={h}
           sizes="(min-width: 768px) 560px, 100vw"
           style={offset ? { transform: `translateY(-${offset}%)` } : undefined}
-          className={
-            phone
-              ? "w-60 rounded-t-3xl border border-b-0 border-[#414755]/30 sm:w-72"
-              : "w-[150%] max-w-none rounded-tl-2xl border border-b-0 border-r-0 border-[#414755]/30 sm:w-[125%]"
-          }
+          className="w-60 rounded-t-3xl border border-b-0 border-[#414755]/30 sm:w-72"
         />
       </div>
       <Fade />

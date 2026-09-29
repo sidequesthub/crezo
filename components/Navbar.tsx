@@ -4,17 +4,11 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("showcase");
+  // The section in view, highlighted in the nav.
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = ["showcase", "features", "pricing", "waitlist"];
+    const sections = ["features", "pricing", "waitlist"];
     
     const observer = new IntersectionObserver(
       (entries) => {
@@ -52,9 +46,9 @@ export default function Navbar() {
       className="fixed top-0 w-full z-50 bg-zinc-900/60 backdrop-blur-xl shadow-2xl shadow-blue-500/5"
     >
       <div className="flex justify-between items-center max-w-7xl mx-auto px-4 sm:px-8 py-4">
-        <div className="text-2xl font-bold tracking-tighter text-zinc-100 font-[family-name:var(--font-headline)]">
+        <a href="#" className="text-2xl font-bold tracking-tighter text-zinc-100 font-[family-name:var(--font-headline)]">
           Crezo
-        </div>
+        </a>
         
         <div className="hidden md:flex items-center gap-8 text-sm tracking-tight">
           {navItems.map((item) => (
