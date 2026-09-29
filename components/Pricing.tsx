@@ -14,9 +14,9 @@ const tiers = [
     featured: false,
     dimmed: false,
     features: [
-      "Up to 3 active brand deals",
+      "Up to 5 active brand deals",
       "Content calendar",
-      "Basic media vault (1 deal album)",
+      "Media vault (3 folders)",
       "Media kit page (crezo.studio/yourname)",
       "Community support",
     ],
