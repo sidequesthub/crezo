@@ -94,13 +94,30 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* The real app, on every screen size. */}
+        {/* The real app, annotated: callouts flank it on desktop, a caption leads it on phones. */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex justify-center"
+          className="mx-auto grid max-w-5xl items-center gap-6 md:grid-cols-[1fr_auto_1fr] md:gap-10"
         >
+          <p className="text-sm text-[#c1c6d7] md:hidden">
+            Your deals, earnings and deadlines — at a glance.
+          </p>
+
+          <div className="hidden flex-col gap-10 md:flex">
+            <Callout
+              title="Earned vs pending"
+              body="See what's paid and what's owed, for each financial year."
+              side="left"
+            />
+            <Callout
+              title="Lead to paid"
+              body="Filter every deal by stage, so nothing stalls unnoticed."
+              side="left"
+            />
+          </div>
+
           {/* A window onto the phone, not the whole screen: the pitch is above. */}
           <div className="relative mx-auto h-[380px] w-[240px] overflow-hidden sm:h-[520px] sm:w-[320px]">
             <div className="absolute -inset-4 bg-[#adc6ff]/10 blur-3xl rounded-full opacity-30"></div>
@@ -114,8 +131,43 @@ export default function Hero() {
             />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#131313] to-transparent" />
           </div>
+
+          <div className="hidden flex-col gap-10 md:flex">
+            <Callout
+              title="Every rupee, every deadline"
+              body="Deal value in ₹ and due dates on every brand collaboration."
+              side="right"
+            />
+            <Callout
+              title="Deal to GST invoice"
+              body="Turn a finished deal into an invoice in one tap."
+              side="right"
+            />
+          </div>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function Callout({
+  title,
+  body,
+  side,
+}: {
+  title: string;
+  body: string;
+  side: "left" | "right";
+}) {
+  return (
+    <div className={side === "left" ? "text-right" : "text-left"}>
+      <div
+        className={`flex items-center gap-3 ${side === "left" ? "flex-row-reverse" : ""}`}
+      >
+        <span className="h-px w-8 bg-[#adc6ff]/40" />
+        <h3 className="text-lg font-bold text-[#e5e2e1]">{title}</h3>
+      </div>
+      <p className="mt-1.5 text-sm leading-relaxed text-[#c1c6d7]">{body}</p>
+    </div>
   );
 }
