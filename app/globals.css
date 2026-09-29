@@ -142,8 +142,9 @@ body {
 }
 
 /* Primary gradient from Stitch design */
+/* Primary buttons: soft pearl, matching the app. The blue stays as the accent. */
 .primary-gradient {
-  background: linear-gradient(135deg, #ADC6FF 0%, #4B8EFF 100%);
+  background: linear-gradient(180deg, #F3EFE7 0%, #D6CFC1 100%);
 }
 
 /* Tonal layering - inset well effect */

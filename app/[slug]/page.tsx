@@ -182,7 +182,7 @@ export default async function MediaKitPage(
         <section className="mt-14">
           <a
             href={`mailto:${kit.contactEmail}`}
-            className="inline-flex h-14 items-center rounded-2xl bg-gradient-to-br from-[#ADC6FF] to-[#4B8EFF] px-8 font-bold text-[#00285C] transition-opacity hover:opacity-90"
+            className="inline-flex h-14 items-center rounded-2xl primary-gradient px-8 font-bold text-[#16140F] transition-opacity hover:opacity-90"
           >
             Work with {kit.displayName.split(' ')[0] || 'me'}
           </a>

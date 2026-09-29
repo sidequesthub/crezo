@@ -42,7 +42,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden px-4 sm:px-8 pt-32 sm:pt-44 pb-20 sm:pb-32" style={{
+    <section className="relative overflow-hidden px-4 sm:px-8 pt-28 sm:pt-44 pb-10 sm:pb-24" style={{
       background: 'radial-gradient(circle at 50% -20%, rgba(75, 142, 255, 0.15) 0%, rgba(19, 19, 19, 0) 60%)'
     }}>
       <div className="max-w-5xl mx-auto text-center">
@@ -84,11 +84,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex justify-center mb-12 sm:mb-20"
+          className="flex justify-center mb-10 sm:mb-20"
         >
           <button
             onClick={openTallyForm}
-            className="bg-gradient-to-br from-[#adc6ff] to-[#4b8eff] text-[#00285c] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:opacity-90 transition-opacity text-sm sm:text-base"
+            className="primary-gradient text-[#16140f] shadow-[0_8px_24px_rgba(0,0,0,0.45)] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:opacity-90 transition-opacity text-sm sm:text-base"
           >
             Join Waitlist
           </button>
@@ -180,18 +180,18 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="md:hidden flex justify-center"
         >
-          <div className="relative max-w-[280px] mx-auto">
+          {/* A window onto the phone, not the whole screen: the pitch is above. */}
+          <div className="relative mx-auto h-[380px] w-[240px] overflow-hidden">
             <div className="absolute -inset-4 bg-[#adc6ff]/10 blur-3xl rounded-full opacity-30"></div>
-            <div className="relative">
-              <Image
-                src="/screenshots/mobile-dashboard.png"
-                alt="Crezo Mobile Dashboard"
-                width={780}
-                height={2502}
-                quality={95}
-                className="rounded-2xl border border-[#414755]/20 shadow-2xl"
-              />
-            </div>
+            <Image
+              src="/screenshots/app-deals.png"
+              alt="Crezo on iPhone — My Deals"
+              width={1170}
+              height={2532}
+              priority
+              className="relative rounded-t-[28px] border border-b-0 border-[#414755]/30 shadow-2xl"
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#131313] to-transparent" />
           </div>
         </motion.div>
       </div>

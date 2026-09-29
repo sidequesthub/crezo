@@ -1,10 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ProductShowcase from "@/components/ProductShowcase";
-import Problems from "@/components/Problems";
-import Features from "@/components/Features";
-import HowItWorks from "@/components/HowItWorks";
-import IndiaFirst from "@/components/IndiaFirst";
+import Showcase from "@/components/Showcase";
 import Pricing from "@/components/Pricing";
 import Waitlist from "@/components/Waitlist";
 import Footer from "@/components/Footer";
@@ -14,11 +10,7 @@ export default function Home() {
     <main className="relative overflow-x-hidden">
       <Navbar />
       <Hero />
-      <Problems />
-      <ProductShowcase />
-      <Features />
-      <HowItWorks />
-      <IndiaFirst />
+      <Showcase />
       <Pricing />
       <Waitlist />
       <Footer />

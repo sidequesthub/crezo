@@ -40,7 +40,7 @@ const tiers = [
       "Priority support",
     ],
     cta: "Join Waitlist — Pro",
-    ctaStyle: "primary-gradient hover:opacity-90 text-[#002e69]",
+    ctaStyle: "primary-gradient hover:opacity-90 text-[#16140f]",
     note: null,
   },
   {
@@ -68,7 +68,7 @@ const tiers = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="pt-12 pb-24 sm:pt-16 sm:pb-32 relative">
+    <section id="pricing" className="pt-8 pb-16 sm:pt-16 sm:pb-32 relative">
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[#adc6ff]/8 rounded-full blur-3xl" />
       
       <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -77,7 +77,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-[family-name:var(--font-headline)]">
             Simple pricing.{" "}
@@ -88,7 +88,8 @@ export default function Pricing() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-start">
+        {/* Phones swipe between tiers instead of scrolling past three stacked cards. */}
+        <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 pt-4 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:items-start md:gap-6 md:overflow-visible md:px-0 md:pt-0">
           {tiers.map((tier, i) => (
             <motion.div
               key={tier.name}
@@ -96,9 +97,9 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative rounded-2xl p-6 sm:p-8 border transition-all ${
+              className={`relative w-[85%] shrink-0 snap-center rounded-2xl p-6 sm:p-8 border transition-all md:w-auto ${
                 tier.featured
-                  ? "bg-[#1c1b1b] border-[#adc6ff]/40 glow-blue scale-[1.02]"
+                  ? "bg-[#1c1b1b] border-[#adc6ff]/40 glow-blue md:scale-[1.02]"
                   : "bg-[#1c1b1b] border-[#353534]"
               } ${tier.dimmed ? "opacity-70" : ""}`}
             >
@@ -106,7 +107,7 @@ export default function Pricing() {
                 <div
                   className={`absolute -top-3 left-6 px-3 py-1 rounded-full text-xs font-semibold ${
                     tier.featured
-                      ? "primary-gradient text-[#002e69]"
+                      ? "primary-gradient text-[#16140f]"
                       : "bg-[#353534] text-[#c1c6d7]"
                   }`}
                 >
@@ -167,7 +168,7 @@ export default function Pricing() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-10 space-y-2"
+          className="text-center mt-6 sm:mt-10 space-y-2"
         >
           <p className="text-sm text-[#c1c6d7]">
             All prices in ₹ INR. Cancel anytime. No hidden fees.

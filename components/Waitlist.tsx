@@ -42,7 +42,7 @@ export default function Waitlist() {
   };
 
   return (
-    <section id="waitlist" className="py-24 sm:py-32 relative">
+    <section id="waitlist" className="py-16 sm:py-32 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#adc6ff]/10 to-transparent" />
 
       <div className="relative max-w-2xl mx-auto px-8 sm:px-12 py-12 sm:py-16 text-center bg-[#1c1b1b]/60 backdrop-blur-sm rounded-3xl border border-[#414755]/30 shadow-2xl">
@@ -72,7 +72,7 @@ export default function Waitlist() {
         >
           <button
             onClick={openTallyForm}
-            className="px-8 py-3.5 rounded-xl primary-gradient hover:opacity-90 font-semibold text-sm transition-all hover:shadow-[0_0_30px_rgba(173,198,255,0.3)] cursor-pointer whitespace-nowrap text-[#002e69]"
+            className="px-8 py-3.5 rounded-xl primary-gradient text-[#16140f] hover:opacity-90 font-semibold text-sm transition-all hover:shadow-[0_0_30px_rgba(243,239,231,0.18)] cursor-pointer whitespace-nowrap text-[#00285c]"
           >
             Join Waitlist
           </button>
