@@ -107,12 +107,12 @@ export default function Hero() {
           className="relative hidden justify-center md:flex"
         >
           <div className="absolute inset-10 rounded-full bg-[#4b8eff]/20 blur-3xl" />
-          <div className="relative h-[470px] w-[300px] overflow-hidden rounded-t-[36px] border border-b-0 border-[#414755]/40 shadow-2xl">
+          <div className="relative h-[450px] w-[300px] overflow-hidden rounded-t-[36px] border border-b-0 border-[#414755]/40 bg-[#131313] pt-6 shadow-2xl">
             <Image
               src="/screenshots/app-deals.png"
               alt="Crezo on iPhone — My Deals"
               width={1170}
-              height={2532}
+              height={2382}
               priority
             />
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#131313] to-transparent" />

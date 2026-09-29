@@ -39,7 +39,7 @@ export default function Showcase() {
             title="Every deal, pitch to paid"
             desc="Track deliverables, deadlines and value in ₹. Turn a finished deal into a GST invoice in one tap."
           >
-            <Shot src="/screenshots/app-deals.png" alt="Crezo deals screen" w={1170} h={2532} phone offset={28} />
+            <Shot src="/screenshots/app-deals.png" alt="Crezo deals screen" w={1170} h={2382} phone offset={24} />
           </Card>
 
           <Card
@@ -48,7 +48,7 @@ export default function Showcase() {
             title="Plan every post"
             desc="Schedule reels, videos and stories, tag them to a deal, and get reminded before they're due."
           >
-            <Shot src="/screenshots/app-calendar.png" alt="Crezo content calendar" w={1170} h={2532} phone offset={6} />
+            <Shot src="/screenshots/app-calendar.png" alt="Crezo content calendar" w={1170} h={2382} phone />
           </Card>
 
           <Card
@@ -149,7 +149,7 @@ function Shot({
           style={offset ? { transform: `translateY(-${offset}%)` } : undefined}
           className={
             phone
-              ? "w-52 rounded-t-3xl border border-b-0 border-[#414755]/30 sm:w-60"
+              ? "w-60 rounded-t-3xl border border-b-0 border-[#414755]/30 sm:w-72"
               : "w-[150%] max-w-none rounded-tl-2xl border border-b-0 border-r-0 border-[#414755]/30 sm:w-[125%]"
           }
         />
