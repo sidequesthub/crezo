@@ -42,12 +42,13 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden px-4 sm:px-8 pt-28 pb-6 sm:pt-36 md:pb-20" style={{
+    <section className="relative flex min-h-[100svh] items-center overflow-hidden px-4 sm:px-8 pt-24 pb-12" style={{
       background: 'radial-gradient(circle at 50% -20%, rgba(75, 142, 255, 0.15) 0%, rgba(19, 19, 19, 0) 60%)'
     }}>
       {/* Wide screens (lg+): pitch left, the real app right, both in the first screen.
           Phones: pitch only — the feature cards below carry the screenshots. */}
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.6fr_1fr]">
+      {/* The hero owns the first screen; the features start below the fold. */}
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.6fr_1fr]">
         <div className="text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
