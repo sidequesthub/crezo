@@ -84,138 +84,155 @@ export default async function MediaKitPage(
       ? (counts as number[]).reduce((a, b) => a + b, 0)
       : null;
 
+  const contact = kit.show?.contact && kit.contactEmail && (
+    <a
+      href={`mailto:${kit.contactEmail}`}
+      className="primary-gradient flex h-14 w-full items-center justify-center gap-2 rounded-2xl font-bold text-[#16140F] transition-opacity hover:opacity-90"
+    >
+      Work with {firstName} <span aria-hidden>→</span>
+    </a>
+  );
+
   return (
-    <main className="relative mx-auto min-h-screen max-w-md px-5 pb-16 pt-6 sm:max-w-lg sm:pt-10">
+    <main className="relative mx-auto min-h-screen max-w-md px-5 pb-16 pt-8 sm:max-w-lg md:max-w-5xl md:px-10 md:pt-16">
       {/* Ambient light, the one "shadow" this design system allows. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-2xl"
+        className="pointer-events-none absolute -top-32 left-0 h-[420px] w-[420px] rounded-full blur-2xl"
         style={{
           background:
             'radial-gradient(circle, rgba(75,142,255,.20) 0%, rgba(75,142,255,.05) 55%, transparent 75%)',
         }}
       />
 
-      <div className="relative overflow-hidden rounded-[32px] bg-[#1C1B1B]">
-        {kit.photoUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={kit.photoUrl} alt={kit.displayName} className="aspect-[4/5] w-full object-cover" />
-        ) : (
-          <div className="flex aspect-[4/5] w-full items-center justify-center text-7xl font-extrabold text-[#ADC6FF]">
-            {initial}
+      {/* Phones: a compact header so the first screen shows who this is and
+          their reach, not just a photo. Desktop: a sticky profile column
+          beside the numbers. */}
+      <div className="relative md:grid md:grid-cols-[320px_1fr] md:gap-14">
+        <aside className="md:sticky md:top-12 md:self-start">
+          <div className="flex items-center gap-4 md:block">
+            <div className="h-24 w-24 shrink-0 overflow-hidden rounded-[28px] bg-[#1C1B1B] md:h-auto md:w-full md:rounded-[32px]">
+              {kit.photoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={kit.photoUrl}
+                  alt={kit.displayName}
+                  className="h-full w-full object-cover md:aspect-[4/5]"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-4xl font-extrabold text-[#ADC6FF] md:aspect-[4/5] md:text-7xl">
+                  {initial}
+                </div>
+              )}
+            </div>
+            <div className="min-w-0 md:mt-7">
+              {kit.niche && (
+                <span className="inline-block rounded-full bg-[#1C1B1B] px-3 py-1 text-xs text-[#C1C6D7]">
+                  {kit.niche}
+                </span>
+              )}
+              <h1 className="mt-2 text-3xl font-extrabold leading-[1.05] tracking-[-0.03em] text-[#E5E2E1] md:mt-3 md:text-4xl">
+                {kit.displayName}
+              </h1>
+            </div>
           </div>
-        )}
+          {kit.tagline && <p className="mt-5 text-lg font-semibold text-[#ADC6FF] md:mt-2">{kit.tagline}</p>}
+          {kit.bio && <p className="mt-3 leading-relaxed text-[#C1C6D7]">{kit.bio}</p>}
+          {contact && <div className="mt-8 hidden md:block">{contact}</div>}
+        </aside>
+
+        <div className="md:pt-1 md:[&>section:first-child]:mt-0">
+          {totalReach !== null && (
+            <section className="mt-8 rounded-3xl bg-[#1C1B1B] p-6 md:mt-0">
+              <Label>Total reach</Label>
+              <div className="mt-2 text-5xl font-extrabold tracking-[-0.03em] text-[#E5E2E1]">
+                {formatCount(totalReach)}
+              </div>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#C1C6D7]">
+                {platforms.map((p) => (
+                  <span key={p.id} className="flex items-center gap-1.5">
+                    <Logo network={p.network} size="sm" />
+                    {PLATFORMS[p.network].label} {p.followers}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {kit.show?.platforms && platforms.length > 0 && (
+            <section className="mt-10">
+              <Label>Platforms</Label>
+              <div className="mt-4 grid gap-3 lg:grid-cols-2">
+                {platforms.map((p) => {
+                  const spec = PLATFORMS[p.network];
+                  const href = profileUrlFor(p.network, p.handle);
+                  const handle = normaliseHandle(p.handle);
+                  return (
+                    <div key={p.id} className="rounded-3xl bg-[#1C1B1B] p-5">
+                      <div className="flex items-center gap-3">
+                        <Logo network={p.network} />
+                        <div className="min-w-0">
+                          <div className="font-semibold text-[#E5E2E1]">{spec.label}</div>
+                          {handle &&
+                            (href ? (
+                              <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer me"
+                                className="block truncate text-sm text-[#8B90A0] underline-offset-4 hover:text-[#C1C6D7] hover:underline"
+                              >
+                                @{handle} ↗
+                              </a>
+                            ) : (
+                              <div className="truncate text-sm text-[#8B90A0]">@{handle}</div>
+                            ))}
+                        </div>
+                      </div>
+                      {(p.followers || p.avgViews) && (
+                        <div className="mt-5 grid grid-cols-2 gap-4">
+                          {p.followers && <Stat value={p.followers} label={audienceLabel(p.network)} />}
+                          {p.avgViews && <Stat value={p.avgViews} label="Avg views" />}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {kit.show?.brands && (kit.brandNames?.length ?? 0) > 0 && (
+            <section className="mt-10">
+              <Label>Worked with</Label>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {kit.brandNames!.map((name) => (
+                  <span key={name} className="rounded-full bg-[#1C1B1B] px-4 py-2 text-sm font-semibold text-[#E5E2E1]">
+                    {name}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {kit.show?.rates && (kit.rates?.length ?? 0) > 0 && (
+            <section className="mt-10">
+              <Label>Rates</Label>
+              <div className="mt-4 rounded-3xl bg-[#1C1B1B] px-5 py-2">
+                {kit.rates.map((r) => (
+                  <div key={r.label} className="flex items-center justify-between gap-4 py-3">
+                    <span className="text-[#C1C6D7]">{r.label}</span>
+                    <span className="text-lg font-extrabold text-[#E5E2E1]">{r.price}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {contact && <div className="mt-10 md:hidden">{contact}</div>}
+        </div>
       </div>
 
-      <header className="relative mt-7">
-        {kit.niche && (
-          <span className="inline-block rounded-full bg-[#1C1B1B] px-3 py-1 text-xs text-[#C1C6D7]">
-            {kit.niche}
-          </span>
-        )}
-        <h1 className="mt-3 text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] text-[#E5E2E1] sm:text-5xl">
-          {kit.displayName}
-        </h1>
-        {kit.tagline && <p className="mt-2 text-lg font-semibold text-[#ADC6FF]">{kit.tagline}</p>}
-        {kit.bio && <p className="mt-4 leading-relaxed text-[#C1C6D7]">{kit.bio}</p>}
-      </header>
-
-      {totalReach !== null && (
-        <section className="mt-8 rounded-3xl bg-[#1C1B1B] p-6">
-          <Label>Total reach</Label>
-          <div className="mt-2 text-5xl font-extrabold tracking-[-0.03em] text-[#E5E2E1]">
-            {formatCount(totalReach)}
-          </div>
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#C1C6D7]">
-            {platforms.map((p) => (
-              <span key={p.id} className="flex items-center gap-1.5">
-                <Logo network={p.network} size="sm" />
-                {PLATFORMS[p.network].label} {p.followers}
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {kit.show?.platforms && platforms.length > 0 && (
-        <section className="mt-10">
-          <Label>Platforms</Label>
-          <div className="mt-4 space-y-3">
-            {platforms.map((p) => {
-              const spec = PLATFORMS[p.network];
-              const href = profileUrlFor(p.network, p.handle);
-              const handle = normaliseHandle(p.handle);
-              return (
-                <div key={p.id} className="rounded-3xl bg-[#1C1B1B] p-5">
-                  <div className="flex items-center gap-3">
-                    <Logo network={p.network} />
-                    <div className="min-w-0">
-                      <div className="font-semibold text-[#E5E2E1]">{spec.label}</div>
-                      {handle &&
-                        (href ? (
-                          <a
-                            href={href}
-                            target="_blank"
-                            rel="noopener noreferrer me"
-                            className="block truncate text-sm text-[#8B90A0] underline-offset-4 hover:text-[#C1C6D7] hover:underline"
-                          >
-                            @{handle} ↗
-                          </a>
-                        ) : (
-                          <div className="truncate text-sm text-[#8B90A0]">@{handle}</div>
-                        ))}
-                    </div>
-                  </div>
-                  {(p.followers || p.avgViews) && (
-                    <div className="mt-5 grid grid-cols-2 gap-4">
-                      {p.followers && <Stat value={p.followers} label={audienceLabel(p.network)} />}
-                      {p.avgViews && <Stat value={p.avgViews} label="Avg views" />}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {kit.show?.brands && (kit.brandNames?.length ?? 0) > 0 && (
-        <section className="mt-10">
-          <Label>Worked with</Label>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {kit.brandNames!.map((name) => (
-              <span key={name} className="rounded-full bg-[#1C1B1B] px-4 py-2 text-sm font-semibold text-[#E5E2E1]">
-                {name}
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {kit.show?.rates && (kit.rates?.length ?? 0) > 0 && (
-        <section className="mt-10">
-          <Label>Rates</Label>
-          <div className="mt-4 rounded-3xl bg-[#1C1B1B] px-5 py-2">
-            {kit.rates.map((r) => (
-              <div key={r.label} className="flex items-center justify-between gap-4 py-3">
-                <span className="text-[#C1C6D7]">{r.label}</span>
-                <span className="text-lg font-extrabold text-[#E5E2E1]">{r.price}</span>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {kit.show?.contact && kit.contactEmail && (
-        <a
-          href={`mailto:${kit.contactEmail}`}
-          className="primary-gradient mt-10 flex h-14 w-full items-center justify-center gap-2 rounded-2xl font-bold text-[#16140F] transition-opacity hover:opacity-90"
-        >
-          Work with {firstName} <span aria-hidden>→</span>
-        </a>
-      )}
-
-      <footer className="mt-12 text-center text-xs text-[#8B90A0]">
+      <footer className="mt-12 text-center text-xs text-[#8B90A0] md:mt-20">
         Media kit powered by{' '}
         <a href="https://crezo.studio" className="font-bold text-[#E5E2E1] hover:underline">
           Crezo
