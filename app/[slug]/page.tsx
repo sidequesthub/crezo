@@ -96,16 +96,7 @@ export default async function MediaKitPage(
         }}
       />
 
-      <div className="relative flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#C1C6D7]">
-          crezo.studio/{slug}
-        </span>
-        <span className="rounded-full bg-[#1C1B1B] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#C1C6D7]">
-          Media kit
-        </span>
-      </div>
-
-      <div className="relative mt-6 overflow-hidden rounded-[32px] bg-[#1C1B1B]">
+      <div className="relative overflow-hidden rounded-[32px] bg-[#1C1B1B]">
         {kit.photoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={kit.photoUrl} alt={kit.displayName} className="aspect-[4/5] w-full object-cover" />
