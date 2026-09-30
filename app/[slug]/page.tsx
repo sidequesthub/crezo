@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getMediaKit } from '@/lib/mediaKit';
-import { PLATFORMS, profileUrlFor, normaliseHandle } from '@/lib/platforms';
+import { PLATFORMS, profileUrlFor, normaliseHandle, audienceLabel } from '@/lib/platforms';
 
 // A snapshot, not a live view: it only changes when the creator republishes.
 // Revalidating hourly picks that up without a deploy.
@@ -124,7 +124,7 @@ export default async function MediaKitPage(
                   </div>
                   {(p.followers || p.avgViews) && (
                     <div className="mt-5 flex gap-7">
-                      {p.followers && <Stat value={p.followers} label="Followers" />}
+                      {p.followers && <Stat value={p.followers} label={audienceLabel(p.network)} />}
                       {p.avgViews && <Stat value={p.avgViews} label="Avg views" />}
                     </div>
                   )}

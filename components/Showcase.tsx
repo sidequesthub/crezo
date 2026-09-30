@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { PLATFORMS } from "@/lib/platforms";
+import { PLATFORMS, audienceLabel } from "@/lib/platforms";
 
 /**
  * The one section that explains the product: four cards, each a one-line
@@ -208,8 +208,9 @@ function MediaKitGraphic() {
                   </span>
                   <span className="truncate text-[11px] text-[#8b90a0]">@{p.handle}</span>
                 </div>
-                <div className="mt-3 flex gap-3">
-                  <Stat value={p.followers} label="Followers" />
+                {/* Stacked on phones: a tile is ~110px wide, too narrow for two stats side by side. */}
+                <div className="mt-3 flex flex-col gap-1.5 sm:flex-row sm:gap-3">
+                  <Stat value={p.followers} label={audienceLabel(p.id)} />
                   <Stat value={p.views} label="Avg views" />
                 </div>
               </div>
