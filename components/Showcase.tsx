@@ -36,7 +36,7 @@ export default function Showcase() {
           label="Brand deals"
           accent="#adc6ff"
           title="Every brand deal, handled."
-          desc="Track deliverables, deadlines and value in ₹ — from the first pitch to the final payment."
+          desc="Track deliverables, deadlines and value in ₹ for every brand you work with."
           points={[
             "Every deal from lead to paid, filterable by stage",
             "Earned vs pending for each financial year",
@@ -64,7 +64,7 @@ export default function Showcase() {
           desc="One link to send brands, with the platforms, reach and rates you choose to show."
           points={[
             "Your own page at crezo.studio/yourname",
-            "Update it in the app — the link never changes",
+            "Update it in the app and the link stays the same",
             "No more exporting Canva PDFs",
           ]}
           screen={<MediaKitScreen />}
@@ -74,7 +74,7 @@ export default function Showcase() {
           label="Media vault"
           accent="#c6c6c7"
           title="Your camera roll, sorted by deal."
-          desc="Group clips into folders per brand. Files never leave your phone — Crezo only keeps the order."
+          desc="Group clips into folders per brand. Files never leave your phone. Crezo only keeps the order."
           points={[
             "A folder for every brand deal",
             "Pick clips straight from your camera roll",

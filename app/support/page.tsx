@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Support — Crezo",
+  title: "Support | Crezo",
   description: "Get help with Crezo. WhatsApp, email, and answers to common questions.",
 };
 
@@ -65,7 +65,7 @@ export default function SupportPage() {
         <div className="mt-6 space-y-4">
           <Faq
             q="Does Crezo upload my photos and videos?"
-            a="No. The Asset Vault reads your camera roll so you can group items into folders, but it only ever stores a reference to each item — never the file. Your media stays on your device, and Crezo has no copy of it."
+            a="No. The Asset Vault reads your camera roll so you can group items into folders, but it only ever stores a reference to each item, never the file itself. Your media stays on your device, and Crezo has no copy of it."
           />
           <Faq
             q="What happens to my folders if I delete a photo?"
@@ -108,13 +108,13 @@ export default function SupportPage() {
           <p className="mt-2 text-sm text-on-surface-variant">
             The most useful bug report says what you were doing, what you
             expected, and what happened instead. Your app version is at the
-            bottom of <strong className="text-on-surface">Profile → Help &amp; support</strong> — including it
+            bottom of <strong className="text-on-surface">Profile → Help &amp; support</strong>, and including it
             helps a lot.
           </p>
         </div>
 
         <p className="mt-12 text-center text-sm text-on-surface-variant/60">
-          Built for Indian creators. Rupees, GST and UPI — not an afterthought.
+          Built for Indian creators, with rupees, GST and UPI at its core.
         </p>
       </div>
     </main>

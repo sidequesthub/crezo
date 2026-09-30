@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Crezo",
+  title: "Privacy Policy | Crezo",
   description:
     "What Crezo collects, why, and how to delete it. Your media never leaves your device.",
 };
@@ -31,8 +31,8 @@ export default function PrivacyPage() {
           <Section title="The short version">
             <p>
               Crezo is a business tool for creators. We store the business
-              records you create — your deals, content plans, invoices and
-              profile — so the app can show them back to you. We do not sell
+              records you create, such as your deals, content plans, invoices
+              and profile, so the app can show them back to you. We do not sell
               your data, we do not run advertising, and we do not track you
               across other apps or websites.
             </p>
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
                 ],
                 [
                   "Vault references",
-                  "For each item you add to a folder, an identifier pointing at that photo or video on your device — roughly a hundred characters. Never the media itself.",
+                  "For each item you add to a folder, an identifier pointing at that photo or video on your device, roughly a hundred characters long. Never the media itself.",
                 ],
               ]}
             />
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
             </p>
             <p className="mt-4">
               Folders exist inside Crezo only. Adding an item to a folder stores
-              a reference to it — the original stays exactly where it is, and
+              a reference to it. The original stays exactly where it is, and
               removing it from a folder does not touch the file. You can revoke
               photo access at any time in your device settings; the rest of the
               app continues to work.
@@ -119,8 +119,8 @@ export default function PrivacyPage() {
               login. It cannot be undone, and it takes effect immediately.
             </p>
             <p className="mt-4">
-              Photos and videos on your device are unaffected — we never had
-              them.
+              Photos and videos on your device are unaffected, because we never
+              had them.
             </p>
             <p className="mt-4">
               You can also email{" "}
@@ -136,8 +136,9 @@ export default function PrivacyPage() {
 
           <Section title="Your rights">
             <p>
-              You can access, correct, export or delete your data at any time —
-              most of it directly in the app, and the rest by writing to us.
+              You can access, correct, export or delete your data at any time.
+              Most of it you can do directly in the app, and the rest by writing
+              to us.
               Under India&apos;s Digital Personal Data Protection Act you may
               also withdraw consent, in which case we delete your account.
             </p>

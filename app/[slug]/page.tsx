@@ -14,7 +14,7 @@ export async function generateMetadata(
   const kit = await getMediaKit(slug);
   if (!kit) return { title: 'Not found' };
 
-  const title = `${kit.displayName} — Media kit`;
+  const title = `${kit.displayName} | Media kit`;
   const description = kit.tagline || kit.bio?.slice(0, 150) || undefined;
   return {
     title,

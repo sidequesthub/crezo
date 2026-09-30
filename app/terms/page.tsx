@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Crezo",
+  title: "Terms of Service | Crezo",
   description:
     "The rules for using Crezo: your account, your content, invoices, subscriptions, and our responsibilities.",
 };
@@ -65,8 +65,8 @@ export default function TermsPage() {
 
           <Section title="Your content">
             <p>
-              Everything you add — deals, content plans, invoices, profile
-              details and media kit information — remains yours. You give us
+              Everything you add remains yours, including deals, content plans,
+              invoices, profile details and media kit information. You give us
               permission to store and display it only so that Crezo can work
               for you, for example to show your deals back to you or to
               publish the media kit link you choose to share. Photos and videos
@@ -78,9 +78,10 @@ export default function TermsPage() {
           <Section title="Invoices and tax">
             <p>
               Crezo helps you prepare invoices, including GST fields where they
-              apply. You are responsible for the accuracy of what you issue —
-              amounts, GSTIN, tax rates, TDS and the details of the brand you
-              bill — and for meeting your own tax and filing obligations.
+              apply. You are responsible for the accuracy of what you issue,
+              including amounts, GSTIN, tax rates, TDS and the details of the
+              brand you bill, and for meeting your own tax and filing
+              obligations.
               Crezo does not give tax, legal or financial advice.
             </p>
           </Section>
@@ -123,8 +124,8 @@ export default function TermsPage() {
           <Section title="Limitation of liability">
             <p>
               Crezo is provided &ldquo;as is&rdquo;. To the extent the law
-              allows, we are not liable for indirect or consequential losses —
-              such as lost deals, income or data — arising from your use of
+              allows, we are not liable for indirect or consequential losses,
+              such as lost deals, income or data, arising from your use of
               Crezo. Our total liability to you is limited to the amount you
               paid us in the 12 months before the claim. Nothing in these terms
               limits rights you have under Indian consumer protection law.

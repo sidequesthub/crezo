@@ -42,7 +42,7 @@ const tiers = [
       "Usage rights & contract storage",
       "Priority support",
     ],
-    cta: "Join Waitlist — Pro",
+    cta: "Join Waitlist for Pro",
     ctaStyle: "primary-gradient hover:opacity-90 text-[#16140f]",
     note: null,
   },

@@ -47,7 +47,7 @@ export default function Hero() {
             className="text-[#c1c6d7] text-base sm:text-xl max-w-2xl mx-auto mb-8 sm:mb-10 px-4"
           >
             Plan content, track payments, send GST invoices and share your media
-            kit — one app built for Indian creators.
+            kit, all in one app built for Indian creators.
           </motion.p>
 
           <motion.div
