@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import JoinWaitlistButton from "./JoinWaitlistButton";
 
 export default function Hero() {
@@ -9,11 +8,10 @@ export default function Hero() {
     <section className="relative flex min-h-[100svh] items-center overflow-hidden px-4 sm:px-8 pt-24 pb-12" style={{
       background: 'radial-gradient(circle at 50% -20%, rgba(75, 142, 255, 0.15) 0%, rgba(19, 19, 19, 0) 60%)'
     }}>
-      {/* Wide screens (lg+): pitch left, the real app right, both in the first screen.
-          Phones: pitch only — the feature cards below carry the screenshots. */}
-      {/* The hero owns the first screen; the features start below the fold. */}
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.6fr_1fr]">
-        <div className="text-center lg:text-left">
+      {/* Text only: the feature sections below carry the app screens. The hero
+          owns the first screen; the features start below the fold. */}
+      <div className="mx-auto w-full max-w-5xl">
+        <div className="text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -30,7 +28,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[min(2.25rem,9.2vw)] sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl text-balance font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
+            className="text-[min(2.25rem,9.2vw)] sm:text-5xl md:text-6xl lg:text-7xl text-balance font-[family-name:var(--font-headline)] font-extrabold tracking-tight mb-6 sm:mb-8 leading-[1.05]"
           >
             {/* Two fixed lines from sm up: a free wrap stranded "pro" on its own line. */}
             <span className="sm:block">Run your creator</span>{" "}
@@ -46,7 +44,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-[#c1c6d7] text-base sm:text-xl max-w-xl mx-auto lg:mx-0 mb-8 sm:mb-10 px-4 lg:px-0"
+            className="text-[#c1c6d7] text-base sm:text-xl max-w-2xl mx-auto mb-8 sm:mb-10 px-4"
           >
             Plan content, track payments, send GST invoices and share your media
             kit — one app built for Indian creators.
@@ -56,30 +54,11 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-center lg:justify-start"
+            className="flex justify-center"
           >
             <JoinWaitlistButton className="primary-gradient text-[#16140f] shadow-[0_8px_24px_rgba(0,0,0,0.45)] px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold hover:opacity-90 transition-opacity text-sm sm:text-base" />
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="relative hidden justify-center lg:flex"
-        >
-          <div className="absolute inset-10 rounded-full bg-[#4b8eff]/20 blur-3xl" />
-          <div className="relative h-[450px] w-[300px] overflow-hidden rounded-t-[36px] border border-b-0 border-[#414755]/40 bg-[#131313] pt-6 shadow-2xl">
-            <Image
-              src="/screenshots/deals-v2.png"
-              alt="Crezo on iPhone — My Deals"
-              width={1170}
-              height={2382}
-              priority
-            />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#131313] to-transparent" />
-          </div>
-        </motion.div>
       </div>
     </section>
   );
