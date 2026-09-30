@@ -31,12 +31,37 @@ export async function generateMetadata(
   };
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+/** "248K", "1.2M", "3.5 lakh", "45,000" → a number. null when it isn't one. */
+function parseCount(raw: string | undefined): number | null {
+  if (!raw) return null;
+  const m = raw.trim().toLowerCase().replace(/,/g, '').match(/^(\d+(?:\.\d+)?)\s*(k|m|l|lakh|lac|cr|crore)?$/);
+  if (!m) return null;
+  const mult: Record<string, number> = { k: 1e3, m: 1e6, l: 1e5, lakh: 1e5, lac: 1e5, cr: 1e7, crore: 1e7 };
+  return Number(m[1]) * (m[2] ? mult[m[2]] : 1);
+}
+
+function formatCount(n: number): string {
+  if (n >= 1e6) return `${(n / 1e6).toFixed(n >= 1e7 ? 0 : 1).replace(/\.0$/, '')}M`;
+  if (n >= 1e3) return `${Math.round(n / 1e3)}K`;
+  return String(n);
+}
+
+function Logo({ network, size = 'md' }: { network: string; size?: 'sm' | 'md' }) {
+  const spec = PLATFORMS[network];
+  const box = size === 'sm' ? 'h-4 w-4 rounded' : 'h-11 w-11 rounded-[14px]';
+  const glyph = size === 'sm' ? 'h-2.5 w-2.5' : 'h-5 w-5';
   return (
-    <div>
-      <div className="text-2xl font-extrabold tracking-tight text-[#E5E2E1]">{value}</div>
-      <div className="mt-0.5 text-[11px] uppercase tracking-[0.12em] text-[#8B90A0]">{label}</div>
-    </div>
+    <span className={`flex shrink-0 items-center justify-center ${box}`} style={{ background: `${spec.color}1F` }}>
+      <svg viewBox="0 0 24 24" className={glyph} fill={spec.color} aria-hidden>
+        <path d={spec.path} />
+      </svg>
+    </span>
+  );
+}
+
+function Label({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8B90A0]">{children}</h2>
   );
 }
 
@@ -48,101 +73,115 @@ export default async function MediaKitPage(
   if (!kit) notFound();
 
   const initial = (kit.displayName || '?').charAt(0).toUpperCase();
+  const firstName = kit.displayName.split(' ')[0] || 'me';
   const platforms = (kit.platforms ?? []).filter((p) => PLATFORMS[p.network]);
 
+  // Total reach only when every listed audience is a readable number; a
+  // guessed total would misstate the creator to a brand.
+  const counts = platforms.map((p) => parseCount(p.followers));
+  const totalReach =
+    kit.show?.platforms && platforms.length > 1 && counts.every((c) => c !== null)
+      ? (counts as number[]).reduce((a, b) => a + b, 0)
+      : null;
+
   return (
-    <main className="relative mx-auto min-h-screen max-w-2xl px-6 pb-24 pt-16 sm:pt-24">
+    <main className="relative mx-auto min-h-screen max-w-md px-5 pb-16 pt-6 sm:max-w-lg sm:pt-10">
       {/* Ambient light, the one "shadow" this design system allows. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-[-120px] h-[420px] w-[420px] rounded-full blur-2xl"
+        className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-2xl"
         style={{
           background:
-            'radial-gradient(circle, rgba(75,142,255,.22) 0%, rgba(75,142,255,.05) 55%, transparent 75%)',
+            'radial-gradient(circle, rgba(75,142,255,.20) 0%, rgba(75,142,255,.05) 55%, transparent 75%)',
         }}
       />
 
-      <header className="relative flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+      <div className="relative flex items-center justify-between">
+        <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#C1C6D7]">
+          crezo.studio/{slug}
+        </span>
+        <span className="rounded-full bg-[#1C1B1B] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#C1C6D7]">
+          Media kit
+        </span>
+      </div>
+
+      <div className="relative mt-6 overflow-hidden rounded-[32px] bg-[#1C1B1B]">
         {kit.photoUrl ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={kit.photoUrl}
-            alt={kit.displayName}
-            className="h-24 w-24 shrink-0 rounded-[28px] object-cover sm:h-28 sm:w-28"
-          />
+          <img src={kit.photoUrl} alt={kit.displayName} className="aspect-[4/5] w-full object-cover" />
         ) : (
-          <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-[28px] bg-[#2A2A2A] text-3xl font-extrabold text-[#ADC6FF] sm:h-28 sm:w-28">
+          <div className="flex aspect-[4/5] w-full items-center justify-center text-7xl font-extrabold text-[#ADC6FF]">
             {initial}
           </div>
         )}
-        <div className="min-w-0">
-          {kit.niche && (
-            <div className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8B90A0]">
-              {kit.niche}
-            </div>
-          )}
-          <h1 className="mt-1.5 text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] text-[#E5E2E1] sm:text-5xl">
-            {kit.displayName}
-          </h1>
-          {kit.tagline && (
-            <p className="mt-2.5 text-[#C1C6D7]">{kit.tagline}</p>
-          )}
-        </div>
+      </div>
+
+      <header className="relative mt-7">
+        {kit.niche && (
+          <span className="inline-block rounded-full bg-[#1C1B1B] px-3 py-1 text-xs text-[#C1C6D7]">
+            {kit.niche}
+          </span>
+        )}
+        <h1 className="mt-3 text-4xl font-extrabold leading-[1.05] tracking-[-0.03em] text-[#E5E2E1] sm:text-5xl">
+          {kit.displayName}
+        </h1>
+        {kit.tagline && <p className="mt-2 text-lg font-semibold text-[#ADC6FF]">{kit.tagline}</p>}
+        {kit.bio && <p className="mt-4 leading-relaxed text-[#C1C6D7]">{kit.bio}</p>}
       </header>
 
-      {kit.bio && (
-        <p className="mt-10 max-w-xl text-lg leading-relaxed text-[#C1C6D7]">{kit.bio}</p>
+      {totalReach !== null && (
+        <section className="mt-8 rounded-3xl bg-[#1C1B1B] p-6">
+          <Label>Total reach</Label>
+          <div className="mt-2 text-5xl font-extrabold tracking-[-0.03em] text-[#E5E2E1]">
+            {formatCount(totalReach)}
+          </div>
+          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-[#C1C6D7]">
+            {platforms.map((p) => (
+              <span key={p.id} className="flex items-center gap-1.5">
+                <Logo network={p.network} size="sm" />
+                {PLATFORMS[p.network].label} {p.followers}
+              </span>
+            ))}
+          </div>
+        </section>
       )}
 
       {kit.show?.platforms && platforms.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8B90A0]">
-            Platforms
-          </h2>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <section className="mt-10">
+          <Label>Platforms</Label>
+          <div className="mt-4 space-y-3">
             {platforms.map((p) => {
               const spec = PLATFORMS[p.network];
               const href = profileUrlFor(p.network, p.handle);
               const handle = normaliseHandle(p.handle);
-              const Card = (
-                <>
+              return (
+                <div key={p.id} className="rounded-3xl bg-[#1C1B1B] p-5">
                   <div className="flex items-center gap-3">
-                    <span
-                      className="flex h-10 w-10 items-center justify-center rounded-[14px]"
-                      style={{ background: `${spec.color}1F` }}
-                    >
-                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill={spec.color} aria-hidden>
-                        <path d={spec.path} />
-                      </svg>
-                    </span>
+                    <Logo network={p.network} />
                     <div className="min-w-0">
-                      <div className="text-sm font-semibold text-[#E5E2E1]">{spec.label}</div>
-                      {handle && (
-                        <div className="truncate text-sm text-[#8B90A0]">@{handle}</div>
-                      )}
+                      <div className="font-semibold text-[#E5E2E1]">{spec.label}</div>
+                      {handle &&
+                        (href ? (
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer me"
+                            className="block truncate text-sm text-[#8B90A0] underline-offset-4 hover:text-[#C1C6D7] hover:underline"
+                          >
+                            @{handle} ↗
+                          </a>
+                        ) : (
+                          <div className="truncate text-sm text-[#8B90A0]">@{handle}</div>
+                        ))}
                     </div>
                   </div>
                   {(p.followers || p.avgViews) && (
-                    <div className="mt-5 flex gap-7">
+                    <div className="mt-5 grid grid-cols-2 gap-4">
                       {p.followers && <Stat value={p.followers} label={audienceLabel(p.network)} />}
                       {p.avgViews && <Stat value={p.avgViews} label="Avg views" />}
                     </div>
                   )}
-                </>
-              );
-
-              return href ? (
-                <a
-                  key={p.id}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer me"
-                  className="group rounded-2xl bg-[#1C1B1B] p-5 transition-colors hover:bg-[#232222]"
-                >
-                  {Card}
-                </a>
-              ) : (
-                <div key={p.id} className="rounded-2xl bg-[#1C1B1B] p-5">{Card}</div>
+                </div>
               );
             })}
           </div>
@@ -150,13 +189,11 @@ export default async function MediaKitPage(
       )}
 
       {kit.show?.brands && (kit.brandNames?.length ?? 0) > 0 && (
-        <section className="mt-12">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8B90A0]">
-            Worked with
-          </h2>
+        <section className="mt-10">
+          <Label>Worked with</Label>
           <div className="mt-4 flex flex-wrap gap-2">
             {kit.brandNames!.map((name) => (
-              <span key={name} className="rounded-full bg-[#1C1B1B] px-4 py-2 text-sm text-[#C1C6D7]">
+              <span key={name} className="rounded-full bg-[#1C1B1B] px-4 py-2 text-sm font-semibold text-[#E5E2E1]">
                 {name}
               </span>
             ))}
@@ -165,13 +202,13 @@ export default async function MediaKitPage(
       )}
 
       {kit.show?.rates && (kit.rates?.length ?? 0) > 0 && (
-        <section className="mt-12">
-          <h2 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#8B90A0]">Rates</h2>
-          <div className="mt-4 space-y-2">
+        <section className="mt-10">
+          <Label>Rates</Label>
+          <div className="mt-4 rounded-3xl bg-[#1C1B1B] px-5 py-2">
             {kit.rates.map((r) => (
-              <div key={r.label} className="flex items-center justify-between rounded-2xl bg-[#1C1B1B] px-5 py-4">
-                <span className="text-sm text-[#C1C6D7]">{r.label}</span>
-                <span className="font-semibold text-[#E5E2E1]">{r.price}</span>
+              <div key={r.label} className="flex items-center justify-between gap-4 py-3">
+                <span className="text-[#C1C6D7]">{r.label}</span>
+                <span className="text-lg font-extrabold text-[#E5E2E1]">{r.price}</span>
               </div>
             ))}
           </div>
@@ -179,20 +216,29 @@ export default async function MediaKitPage(
       )}
 
       {kit.show?.contact && kit.contactEmail && (
-        <section className="mt-14">
-          <a
-            href={`mailto:${kit.contactEmail}`}
-            className="inline-flex h-14 items-center rounded-2xl primary-gradient px-8 font-bold text-[#16140F] transition-opacity hover:opacity-90"
-          >
-            Work with {kit.displayName.split(' ')[0] || 'me'}
-          </a>
-        </section>
+        <a
+          href={`mailto:${kit.contactEmail}`}
+          className="primary-gradient mt-10 flex h-14 w-full items-center justify-center gap-2 rounded-2xl font-bold text-[#16140F] transition-opacity hover:opacity-90"
+        >
+          Work with {firstName} <span aria-hidden>→</span>
+        </a>
       )}
 
-      <footer className="mt-20 border-t border-white/[.06] pt-6 text-xs text-[#8B90A0]">
+      <footer className="mt-12 text-center text-xs text-[#8B90A0]">
         Media kit powered by{' '}
-        <a href="https://crezo.studio" className="text-[#C1C6D7] hover:underline">Crezo</a>
+        <a href="https://crezo.studio" className="font-bold text-[#E5E2E1] hover:underline">
+          Crezo
+        </a>
       </footer>
     </main>
+  );
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div>
+      <div className="text-3xl font-extrabold tracking-tight text-[#E5E2E1]">{value}</div>
+      <div className="mt-0.5 text-xs text-[#8B90A0]">{label}</div>
+    </div>
   );
 }
