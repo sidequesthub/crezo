@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Refined Crezo Obsidian & Electric Studio ambient background gradient -->
+    <radialGradient id="electricAtmosphere" cx="28%" cy="20%" r="90%">
+      <stop offset="0%" stop-color="#202A42"/>
+      <stop offset="35%" stop-color="#141824"/>
+      <stop offset="70%" stop-color="#0B0D12"/>
+      <stop offset="100%" stop-color="#050608"/>
+    </radialGradient>
+
+    <!-- Subtle inner surface light gradient -->
+    <linearGradient id="subtleSurfaceSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ADC6FF" stop-opacity="0.16"/>
+      <stop offset="45%" stop-color="#4B8EFF" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Soft glow behind the white 'C' mark -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4B8EFF" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#ADC6FF" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Drop shadow for the glyph -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.65"/>
+    </filter>
+
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ADC6FF" stop-opacity="0.32"/>
+      <stop offset="50%" stop-color="#4B8EFF" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.03"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base Container with Rich Ambient Gradient -->
+  <rect width="512" height="512" rx="112" fill="url(#electricAtmosphere)"/>
+  <rect width="512" height="512" rx="112" fill="url(#subtleSurfaceSheen)"/>
+
+  <!-- Subtle glow beneath mark -->
+  <circle cx="248" cy="260" r="170" fill="url(#centerGlow)"/>
+
+  <!-- Precision border highlight with gradient stroke -->
+  <rect width="508" height="508" x="2" y="2" rx="110" fill="none" stroke="url(#borderGradient)" stroke-width="2.5"/>
+
+  <!-- Perfectly Centered Crezo Architectural 'C' in Crisp Pure White -->
+  <path filter="url(#softShadow)"
+        d="M 364 196
+           C 342 152 298 126 248 126
+           C 172 126 112 184 112 260
+           C 112 336 172 394 248 394
+           C 300 394 344 366 366 322
+           L 308 294
+           C 294 322 272 338 246 338
+           C 204 338 170 304 170 260
+           C 170 216 204 182 246 182
+           C 272 182 294 198 308 226
+           Z"
+        fill="#FFFFFF"/>
+</svg>
