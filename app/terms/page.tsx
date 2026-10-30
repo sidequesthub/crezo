@@ -88,8 +88,9 @@ export default function TermsPage() {
 
           <Section title="Subscriptions">
             <p>
-              Some features may require a paid subscription. Prices and what
-              each plan includes are shown in the app before you buy.
+              Crezo is currently free, with no purchases in the app. If we
+              introduce paid subscriptions, prices and what each plan includes
+              will be shown in the app before you buy.
               Purchases made in the iOS app are processed by Apple, renew
               automatically unless you cancel at least 24 hours before the end
               of the current period, and are managed and refunded under
