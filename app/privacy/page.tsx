@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     "What Crezo collects, why, and how to delete it. Your media never leaves your device.",
 };
 
-const UPDATED = "23 August 2026";
+const UPDATED = "30 October 2026";
 
 export default function PrivacyPage() {
   return (
@@ -37,9 +37,10 @@ export default function PrivacyPage() {
               across other apps or websites.
             </p>
             <Callout>
-              Your photos and videos never leave your device. The Asset Vault
+              Your camera roll never leaves your device. The Asset Vault
               organises media by storing a reference to each item, never the
-              file itself.
+              file itself. The only photo Crezo uploads is a profile or media
+              kit photo that you pick yourself.
             </Callout>
           </Section>
 
@@ -49,11 +50,11 @@ export default function PrivacyPage() {
               rows={[
                 [
                   "Account",
-                  "Your phone number or Google email address, used to sign you in and identify your account.",
+                  "The name and email address that Sign in with Apple or Google shares with us (Apple lets you hide your email), used to sign you in and identify your account.",
                 ],
                 [
                   "Profile",
-                  "Name, bio, niche and profile photo, if you add them. These appear on your invoices and media kit.",
+                  "Name, bio, niche and profile photo, if you add them. These appear on your invoices and media kit. A photo you pick is uploaded to our storage so it can be shown.",
                 ],
                 [
                   "Business records",
@@ -62,6 +63,10 @@ export default function PrivacyPage() {
                 [
                   "Payment details",
                   "GSTIN, PAN, UPI ID, bank account number and IFSC, if you enter them. Stored so invoices can be generated with your payment information.",
+                ],
+                [
+                  "Media kit",
+                  "If you publish your media kit, the details you choose to show (name, photo, tagline, platforms and handles, audience numbers, brands, rates and contact email) appear on a public page at crezo.studio/your-name that anyone with the link can see. Unpublish it at any time in the app.",
                 ],
                 [
                   "Vault references",
@@ -73,7 +78,7 @@ export default function PrivacyPage() {
 
           <Section title="What we do not collect">
             <ul className="list-inside list-disc space-y-2">
-              <li>Your photos, videos, or any file from your device</li>
+              <li>Your camera roll or any file from your device, other than a photo you pick to upload</li>
               <li>Location data</li>
               <li>Contacts, calendar, or messages</li>
               <li>Advertising or cross-app tracking identifiers</li>
@@ -104,10 +109,18 @@ export default function PrivacyPage() {
               your account can read your records. Data is encrypted in transit.
             </p>
             <p className="mt-4">
-              If you sign in by phone, your number is passed to MSG91, our SMS
-              provider, solely to deliver your one-time passcode. If you sign in
-              with Google, Google provides us your name and email address. We
-              use no other third-party processors.
+              We use these service providers, each only to run Crezo:
+            </p>
+            <ul className="mt-2 list-inside list-disc space-y-2">
+              <li>Supabase: database, sign-in and photo storage.</li>
+              <li>Apple and Google: sign-in. They share your name and email with us.</li>
+              <li>Vercel: hosts crezo.studio, including public media kit pages.</li>
+              <li>Expo: delivers app updates. It receives technical details such as the app version, not your records.</li>
+            </ul>
+            <p className="mt-4">
+              Each provider is bound to protect your data at least as well as
+              this policy does. We do not share your data with anyone else,
+              and we do not use AI services or analytics.
             </p>
           </Section>
 
@@ -119,8 +132,13 @@ export default function PrivacyPage() {
               login. It cannot be undone, and it takes effect immediately.
             </p>
             <p className="mt-4">
-              Photos and videos on your device are unaffected, because we never
-              had them.
+              Your public media kit page disappears with it. Photos and videos on
+              your device are unaffected, because we never had them.
+            </p>
+            <p className="mt-4">
+              How long we keep data: as long as your account exists. After you
+              delete your account, it is gone from our live database at once and
+              from our provider&apos;s encrypted backups within 30 days.
             </p>
             <p className="mt-4">
               You can also email{" "}
